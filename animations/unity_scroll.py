@@ -33,4 +33,4 @@ def render_frame(data, shift):
 while True:
     for shift in range(img_width):
         render_frame(img_raw, shift)
-        time.sleep(0.3)
+        time.sleep(0.2)
