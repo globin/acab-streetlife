@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ./acabsimulator.py "Wall 0" 4001 &
-./acabsimulator.py "Wall 1" 4002 &
+#./acabsimulator.py "Wall 1" 4002 &
 
 ./server/acabslrouter.py simulation &
 
