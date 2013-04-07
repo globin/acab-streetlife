@@ -1,12 +1,26 @@
 #!/bin/sh
 
+kill_sim()
+{
+    kill `pidof -x acabslrouter.py`
+    kill `pidof -x acabsimulator.py`
+
+    exit
+}
+
+# Catch Ctrl+C
+trap kill_sim INT
+
+# Start simulator
 ./acabsimulator.py "Wall 0" 4001 &
 #./acabsimulator.py "Wall 1" 4002 &
 
+# Start server for simulation
 ./server/acabslrouter.py simulation &
 
+# Wait
 echo press enter to stop the simulation
 read dummy
 
-kill `pidof -x acabslrouter.py`
-kill `pidof -x acabsimulator.py`
+# Clean up
+kill_sim
