@@ -52,10 +52,11 @@ def send_to_wall(data, wall):
         wall['socket'].sendto(data, (wall['simhost'], wall['simport']))
 
 def find_wall(x,y):
-    # hack for congress
-    if x < 8:
-        return walls[0]
-    return walls[1]
+    for wall in walls:
+        if x < wall['startx']+wall['sizex']:
+            return wall
+
+    return walls[0]
 
 def translate_for_wall(x,y,wall):
     nx = x - wall['startx']
