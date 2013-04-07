@@ -5,7 +5,7 @@ import colorsys
 import random
 import time
 
-NOOFWALLS=2
+NOOFWALLS=1
 
 tick = 0.5
 

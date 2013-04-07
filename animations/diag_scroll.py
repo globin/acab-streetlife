@@ -5,8 +5,6 @@ import colorsys
 import random
 import time
 
-NOOFWALLS=1
-
 tick = 0.2
 
 wall0 = 0
