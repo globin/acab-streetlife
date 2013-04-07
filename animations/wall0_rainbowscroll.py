@@ -1,5 +1,3 @@
-#!/usr/bin/python
-
 from acabsl import send
 from acabsl import update
 import colorsys
@@ -7,7 +5,7 @@ import random
 import time
 
 tick = 0.2
-wall = 1
+wall = 0
 
 def setcol(col, r, g, b, time):
     for i in range(0,6):
