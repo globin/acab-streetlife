@@ -1,4 +1,3 @@
-#!/usr/bin/python
 from acabsl import send
 from acabsl import update
 import colorsys
@@ -6,13 +5,12 @@ import random
 import time
 
 TICK = 0.2
-WALL = 0
-NOOFPIXELSX=8
-NOOFPIXELSY=6
+WALL = 1
+NOOFPIXELSX=6
 
 def setcol(col, r, g, b, time):
-    for i in range(0,NOOFPIXELSY):
-        c = (col+i+1)%(NOOFPIXELSX)
+    for i in range(0,NOOFPIXELSX):
+	c = (col+i+1)%(NOOFPIXELSX+1)
         send(WALL,c,i,r,g,b,time);
     update()
 
