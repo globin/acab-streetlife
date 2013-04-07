@@ -9,6 +9,7 @@ import thread
 import time
 import Queue
 import sys
+import errno
 
 UDP_IP="127.0.0.1"
 UDP_PORT=int(sys.argv[2])
@@ -119,7 +120,13 @@ sock.bind((UDP_IP,UDP_PORT))
 thread.start_new_thread(writer,())
 
 while True:
-    data = sock.recv(1024)
+    try:
+        data = sock.recv(1024)
+    except socket.error as e:
+        if e.errno != errno.EINTR: # Interrupted system call
+            print e
+        sys.exit()
+
     if not q.full():
         q.put(data)
     else:
