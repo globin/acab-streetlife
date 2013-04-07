@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import acabsl
 import pygame
 import r0ket_input

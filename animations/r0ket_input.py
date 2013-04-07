@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import r0ketrem0te.game
 from time import sleep
 

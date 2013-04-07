@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import acabsl
 import colorsys
 import random

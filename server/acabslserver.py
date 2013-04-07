@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import acabsl_interface
 import socket
 import thread

@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import subprocess
 import playlist
 import time

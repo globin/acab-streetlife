@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import serialinterface
 import time
 import Queue

@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 from acabsl_legacy import send
 from acabsl_legacy import update
 import colorsys
