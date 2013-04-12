@@ -8,8 +8,10 @@ from errorconsole import *
 
 class MainFrame(wx.Frame):
     """ Window for selection of next animations and queue """
-    def __init__(self):
+    def __init__(self, animations_list):
             wx.Frame.__init__(self, None, title="LED-Wand")
+
+            self.animations_list = animations_list
 
             # Menu
             filemenu = wx.Menu()
@@ -29,17 +31,17 @@ class MainFrame(wx.Frame):
             panel = wx.Panel(self)
             tabs = wx.Notebook(panel)
 
-            selection = Selection(tabs)
-            queue = Queue(tabs)
-            errorconsole = ErrorConsole(tabs)
+            self.selection = Selection(tabs, self.animations_list)
+            self.queue = Queue(tabs)
+            self.errorconsole = ErrorConsole(tabs)
 
-            tabs.AddPage(selection, "Liste")
-            tabs.AddPage(queue, "Queue")
-            tabs.AddPage(errorconsole, "Fehlerkonsole")
+            tabs.AddPage(self.selection, "Liste")
+            tabs.AddPage(self.queue, "Queue")
+            tabs.AddPage(self.errorconsole, "Fehlerkonsole")
 
             # Layout
             sizer = wx.BoxSizer()
-            sizer.Add(tabs, wx.ID_ANY, wx.EXPAND)
+            sizer.Add(tabs, 1, wx.EXPAND)
             panel.SetSizer(sizer)
 
             # Show window
@@ -47,3 +49,6 @@ class MainFrame(wx.Frame):
 
     def OnExit(self, e):
         self.Close(True)
+
+    def PrintError(self, error):
+        self.errorconsole.AddText(error)
