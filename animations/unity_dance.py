@@ -2,17 +2,18 @@
 
 import Image
 import time
+import os
 from acabsl import *
 
 # setup
 img = {}
 frames = []
-with open("dance/dance") as f:
+with open(os.path.join(os.path.dirname(__file__), "dance/dance")) as f:
     for line in f:
         line = line.strip()
         frames.append(line)
         if line not in img:
-            img[line] = Image.open("dance/" + line).getdata()
+            img[line] = Image.open(os.path.join(os.path.dirname(__file__), "dance", line)).getdata()
 
 for wall in range(NOOFWALLS):
     for col in range(WALLSIZEX):

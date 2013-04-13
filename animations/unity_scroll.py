@@ -2,10 +2,11 @@
 
 import Image
 import time
+import os
 from acabsl import *
 
 # setup
-img = Image.open("unity.png")
+img = Image.open(os.path.join(os.path.dirname(__file__), "unity.png"))
 img_width = img.size[0]
 img_raw = img.getdata()
 
