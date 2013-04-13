@@ -59,8 +59,9 @@ class Scheduler:
                 self.process=subprocess.Popen(["python", animation.GetFile()])
 
                 print "[" + str(self.process.pid) + "] " + animation.GetFile()
-
                 time.sleep(animation.GetTime())
+
+                print "Kill process " + str(self.process.pid)
                 self.process.kill()
                 self.RemoveCurrent()
             else:
