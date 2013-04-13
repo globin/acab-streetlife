@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import os
+
 class Animation:
     def __init__(self):
         self.file = ""
@@ -17,17 +19,34 @@ class Animation:
     def GetName(self):
         return self.name
 
+    def GetTime(self):
+        return 30
+
     @staticmethod
     def LoadFromFile(filename):
         animations_list = []
 
+        path = os.path.dirname(os.path.abspath(filename))
+
         with open(filename) as f:
             content = f.readlines()
 
+            tmp = None
+            counter = 0
             for line in content:
-                tmp = Animation()
-                tmp.SetFile(line[0:-1]) # Crop newline
+                line = line[0:-1] # Crop newline
 
-                animations_list.append(tmp)
+                if line == "":
+                    counter = 0
+                    continue
+
+                if counter == 0:
+                    tmp = Animation()
+                    tmp.SetFile(os.path.join(path, line))
+                    counter = counter + 1
+                elif counter == 1:
+                    tmp.SetName(line)
+                    animations_list.append(tmp)
+                    counter = 0
 
             return animations_list

@@ -8,10 +8,11 @@ from errorconsole import *
 
 class MainFrame(wx.Frame):
     """ Window for selection of next animations and queue """
-    def __init__(self, animations_list):
+    def __init__(self, animations_list, scheduler):
             wx.Frame.__init__(self, None, title="LED-Wand")
 
             self.animations_list = animations_list
+            self.scheduler = scheduler
 
             # Menu
             filemenu = wx.Menu()
@@ -31,7 +32,7 @@ class MainFrame(wx.Frame):
             panel = wx.Panel(self)
             tabs = wx.Notebook(panel)
 
-            self.selection = Selection(tabs, self.animations_list)
+            self.selection = Selection(tabs, self.animations_list, self.scheduler)
             self.queue = Queue(tabs)
             self.errorconsole = ErrorConsole(tabs)
 
@@ -43,6 +44,12 @@ class MainFrame(wx.Frame):
             sizer = wx.BoxSizer()
             sizer.Add(tabs, 1, wx.EXPAND)
             panel.SetSizer(sizer)
+
+            # Print list of animations
+            self.PrintError("Animations:")
+            for a in self.animations_list:
+                self.PrintError(a.GetFile())
+            self.PrintError("")
 
             # Show window
             self.Show(True)
