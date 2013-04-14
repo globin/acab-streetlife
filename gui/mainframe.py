@@ -28,17 +28,17 @@ class MainFrame(wx.Frame):
 
             # Panel with notebook
             panel = wx.Panel(self)
-            tabs = wx.Notebook(panel)
+            splitter = wx.SplitterWindow(panel)
+            splitter.SetSashGravity(0.5)
 
-            self.queue = Queue(tabs)
-            self.selection = Selection(tabs, self.animations_list, self.queue)
+            self.queue = Queue(splitter)
+            self.selection = Selection(splitter, self.animations_list, self.queue)
 
-            tabs.AddPage(self.selection, "Liste")
-            tabs.AddPage(self.queue, "Queue")
+            splitter.SplitVertically(self.selection, self.queue)
 
             # Layout
             sizer = wx.BoxSizer()
-            sizer.Add(tabs, 1, wx.EXPAND)
+            sizer.Add(splitter, 1, wx.EXPAND)
             panel.SetSizer(sizer)
 
             # Show window
