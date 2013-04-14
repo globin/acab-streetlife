@@ -5,7 +5,6 @@ import sys
 
 from mainframe import *
 from animation import *
-from scheduler import *
 
 def PrintHelp(errno):
     print "LED-Wand GUI"
@@ -27,13 +26,7 @@ animations_file = sys.argv[1]
 # Read animations
 animations_list = Animation.LoadFromFile(animations_file)
 
-# Scheduler
-scheduler = Scheduler()
-scheduler.Start()
-
 # Start GUI
 app = wx.App(False)
-frame = MainFrame(animations_list, scheduler)
+frame = MainFrame(animations_list)
 app.MainLoop()
-
-scheduler.Stop()
