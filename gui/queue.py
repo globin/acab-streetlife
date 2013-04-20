@@ -10,12 +10,17 @@ class Queue(wx.ScrolledWindow):
         wx.ScrolledWindow.__init__(self, parent)
         self.SetScrollRate(10,10)
 
+        # Sizer
         self.sizer = wx.BoxSizer(wx.VERTICAL)
         self.SetSizer(self.sizer)
 
         # Title
         t = wx.StaticText(self, wx.ID_ANY, "Auswahl", style=wx.ALIGN_CENTRE)
         self.sizer.Add(t, 0, wx.EXPAND)
+
+        # Sizer for items
+        self.items_sizer = wx.BoxSizer(wx.VERTICAL)
+        self.sizer.Add(self.items_sizer, 0, wx.EXPAND)
 
         # Queue
         self.queue = [] # First element: plays/next to play
@@ -33,13 +38,16 @@ class Queue(wx.ScrolledWindow):
         if self.process != None:
             self.KillProcess()
 
-    def Insert(self, animation):
+    def Insert(self, animation, pos = -1):
         empty = self.IsEmpty()
 
-        tmp = QueueItem(self, animation)
-        self.sizer.Add(tmp, 0, wx.EXPAND)
+        if pos == -1:
+            pos = len(self.queue)
 
-        self.queue.insert(len(self.queue), tmp)
+        tmp = QueueItem(self, animation, self)
+        self.items_sizer.Add(tmp, 0, wx.EXPAND)
+
+        self.queue.insert(pos, tmp)
 
         self.Layout()
         self.FitInside()
@@ -48,18 +56,7 @@ class Queue(wx.ScrolledWindow):
             self.PlayNext()
 
     def InsertFirst(self, animation):
-        empty = self.IsEmpty()
-
-        tmp = QueueItem(self, animation)
-        self.sizer.Add(tmp, 0, wx.EXPAND)
-
-        self.queue.insert(0, tmp)
-
-        self.Layout()
-        self.FitInside()
-
-        if empty:
-            self.PlayNext()
+        self.Insert(animation, 0)
 
     def CurrentAnimation(self):
         if len(self.queue) > 0:
@@ -67,8 +64,31 @@ class Queue(wx.ScrolledWindow):
         else:
             return None
 
+    def Remove(self, queue_item):
+        if len(self.queue) > 0:
+            index = self.queue.index(queue_item)
+
+            if index == 0:  # Current animation -> play next (and kill current animation process)
+                self.PlayNext()
+            else:           # Remove from list
+                self.items_sizer.Hide(queue_item)
+                self.items_sizer.Remove(queue_item)
+
+                self.Layout()
+                self.FitInside()
+
+                self.queue.pop(index)
+        else:
+            return None
+
     def RemoveCurrent(self):
         if len(self.queue) > 0:
+            self.items_sizer.Hide(0)
+            self.items_sizer.Remove(0)
+
+            self.Layout()
+            self.FitInside()
+
             return self.queue.pop(0)
         else:
             return None

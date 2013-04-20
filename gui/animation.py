@@ -20,7 +20,7 @@ class Animation:
         return self.name
 
     def GetTime(self):
-        return 30
+        return 10
 
     @staticmethod
     def LoadFromFile(filename):
