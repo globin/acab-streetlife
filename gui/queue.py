@@ -118,7 +118,7 @@ class Queue(wx.ScrolledWindow):
             cmd.extend(animation.GetConfig())
             self.process=subprocess.Popen(cmd)
 
-            print "[" + str(self.process.pid) + "] " + animation.GetFile()
+            print "[" + str(self.process.pid) + "] " + animation.GetFile() + "".join(str(" " + i) for i in animation.GetConfig())
 
             self.timer.Start(animation.GetTime()*1000, True)
 
