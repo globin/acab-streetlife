@@ -6,19 +6,20 @@ import os
 import sys
 from acabsl import *
 
-FALLBACK = "dance"
+FALLBACK = "dance/list"
 
 # config
 if len(sys.argv) != 2:
-    img_dir = FALLBACK
+    img_file = FALLBACK
 else:
-    img_dir = sys.argv[1]
+    img_file = sys.argv[1]
 
-img_file = os.path.join(os.path.dirname(__file__), img_dir, "list")
+img_file = os.path.join(os.path.dirname(__file__), img_file)
 
 if not os.path.isfile(img_file):
-    img_dir = FALLBACK
-    img_file = os.path.join(os.path.dirname(__file__), img_dir, "list")
+    img_file = os.path.join(os.path.dirname(__file__), FALLBACK)
+
+img_dir = os.path.dirname(img_file)
 
 # setup
 img = {}
@@ -28,7 +29,7 @@ with open(img_file) as f:
         line = line.strip()
         frames.append(line)
         if line not in img:
-            img[line] = Image.open(os.path.join(os.path.dirname(__file__), img_dir, line)).getdata()
+            img[line] = Image.open(os.path.join(img_dir, line)).getdata()
 
 for wall in range(NOOFWALLS):
     for col in range(WALLSIZEX):

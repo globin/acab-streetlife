@@ -2,18 +2,34 @@ fullpulse.py
 #
 Einfarbiger Fade
 
-unity_scroll.py
-#
-Unity Scroll
-
 warp_core.py
 #
 Warp core
 
+unity_scroll.py
+#
+Unity Scroll
+
 unity_animation.py
-chessboard
+chessboard/list
 Chessboard
 
 unity_animation.py
-dance
+dance/list
 Unity Dance
+
+unity_animation.py
+square/full
+Middle square full
+
+unity_animation.py
+square/half
+Middle square half
+
+unity_animation.py
+circle/full
+Middle circle full
+
+unity_animation.py
+circle/half
+Middle circle half
