@@ -3,12 +3,12 @@
 import wx
 
 class AnimationItem(wx.Panel):
-    def __init__(self, parent, animation, scheduler):
+    def __init__(self, parent, animation, queue):
         wx.Panel.__init__(self, parent)
 
         self.animation = animation
 
-        self.scheduler = scheduler
+        self.queue = queue
 
         # Horizontal Layout
         sizer = wx.BoxSizer(wx.HORIZONTAL)
@@ -25,4 +25,4 @@ class AnimationItem(wx.Panel):
         self.SetSizer(sizer)
 
     def OnButtonQueue(self, e):
-        self.scheduler.Insert(self.animation)
+        self.queue.Insert(self.animation)

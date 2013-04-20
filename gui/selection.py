@@ -16,9 +16,13 @@ class Selection(wx.ScrolledWindow):
 
         sizer = wx.BoxSizer(wx.VERTICAL)
 
+        # Title
+        t = wx.StaticText(self, wx.ID_ANY, "Auswahl", style=wx.ALIGN_CENTRE)
+        sizer.Add(t, 0, wx.EXPAND)
+
         for a in self.animations_list:
             tmp = AnimationItem(self, a, self.queue)
-            sizer.Add(tmp, 1, wx.EXPAND)
+            sizer.Add(tmp, 0, wx.EXPAND)
 
             self.animations_items.append(tmp)
 

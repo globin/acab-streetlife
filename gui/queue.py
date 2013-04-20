@@ -3,10 +3,19 @@
 import wx
 import subprocess
 
-class Queue(wx.Panel):
+from queueitem import *
+
+class Queue(wx.ScrolledWindow):
     def __init__(self, parent):
-        wx.Panel.__init__(self, parent)
-        t = wx.StaticText(self, wx.ID_ANY, "Queue", (20,20))
+        wx.ScrolledWindow.__init__(self, parent)
+        self.SetScrollRate(10,10)
+
+        self.sizer = wx.BoxSizer(wx.VERTICAL)
+        self.SetSizer(self.sizer)
+
+        # Title
+        t = wx.StaticText(self, wx.ID_ANY, "Auswahl", style=wx.ALIGN_CENTRE)
+        self.sizer.Add(t, 0, wx.EXPAND)
 
         # Queue
         self.queue = [] # First element: plays/next to play
@@ -27,7 +36,13 @@ class Queue(wx.Panel):
     def Insert(self, animation):
         empty = self.IsEmpty()
 
-        self.queue.insert(len(self.queue), animation)
+        tmp = QueueItem(self, animation)
+        self.sizer.Add(tmp, 0, wx.EXPAND)
+
+        self.queue.insert(len(self.queue), tmp)
+
+        self.Layout()
+        self.FitInside()
 
         if empty:
             self.PlayNext()
@@ -35,14 +50,20 @@ class Queue(wx.Panel):
     def InsertFirst(self, animation):
         empty = self.IsEmpty()
 
-        self.queue.insert(0, animation)
+        tmp = QueueItem(self, animation)
+        self.sizer.Add(tmp, 0, wx.EXPAND)
+
+        self.queue.insert(0, tmp)
+
+        self.Layout()
+        self.FitInside()
 
         if empty:
             self.PlayNext()
 
-    def Current(self):
+    def CurrentAnimation(self):
         if len(self.queue) > 0:
-            return self.queue[0]
+            return self.queue[0].GetAnimation()
         else:
             return None
 
@@ -69,7 +90,7 @@ class Queue(wx.Panel):
 
         # Start next process
         if not self.IsEmpty():
-            animation = self.Current()
+            animation = self.CurrentAnimation()
             self.process=subprocess.Popen(["python", animation.GetFile()])
 
             print "[" + str(self.process.pid) + "] " + animation.GetFile()
