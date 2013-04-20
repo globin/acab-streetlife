@@ -18,7 +18,7 @@ class QueueItem(wx.Panel):
             name_str = ""
         else:
             name_str = self.animation.GetName()
-        name = wx.StaticText(self, wx.ID_ANY, name_str, (20,20))
+        name = wx.StaticText(self, wx.ID_ANY, name_str, (20,20), (200,-1))
         sizer.Add(name, flag=wx.ALIGN_CENTER_VERTICAL)
 
         # Delete button

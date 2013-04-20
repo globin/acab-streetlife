@@ -18,6 +18,9 @@ class Selection(wx.ScrolledWindow):
 
         # Title
         t = wx.StaticText(self, wx.ID_ANY, "Auswahl", style=wx.ALIGN_CENTRE)
+        f = t.GetFont()
+        f.SetWeight(wx.BOLD)
+        t.SetFont(f)
         sizer.Add(t, 0, wx.EXPAND)
 
         for a in self.animations_list:

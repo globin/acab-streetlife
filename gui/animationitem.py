@@ -14,7 +14,7 @@ class AnimationItem(wx.Panel):
         sizer = wx.BoxSizer(wx.HORIZONTAL)
 
         # Name
-        name = wx.StaticText(self, wx.ID_ANY, self.animation.GetName(), (20,20))
+        name = wx.StaticText(self, wx.ID_ANY, self.animation.GetName(), (20,20), (200, -1))
         sizer.Add(name, flag=wx.ALIGN_CENTER_VERTICAL)
 
         # Queue button

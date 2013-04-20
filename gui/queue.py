@@ -15,7 +15,10 @@ class Queue(wx.ScrolledWindow):
         self.SetSizer(self.sizer)
 
         # Title
-        t = wx.StaticText(self, wx.ID_ANY, "Auswahl", style=wx.ALIGN_CENTRE)
+        t = wx.StaticText(self, wx.ID_ANY, "Queue", style=wx.ALIGN_CENTRE)
+        f = t.GetFont()
+        f.SetWeight(wx.BOLD)
+        t.SetFont(f)
         self.sizer.Add(t, 0, wx.EXPAND)
 
         # Sizer for items

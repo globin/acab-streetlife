@@ -8,16 +8,16 @@ from queue import *
 class MainFrame(wx.Frame):
     """ Window for selection of next animations and queue """
     def __init__(self, animations_list):
-            wx.Frame.__init__(self, None, title="LED-Wand")
+            wx.Frame.__init__(self, None, title="ACAB Control", size=(600, 400))
 
             self.animations_list = animations_list
 
             # Menu
             filemenu = wx.Menu()
-            exitItem = filemenu.Append(wx.ID_EXIT, "Beenden", "Programm beenden")
+            exitItem = filemenu.Append(wx.ID_EXIT, "Exit", "Exit program")
 
             menu = wx.MenuBar()
-            menu.Append(filemenu, "Datei")
+            menu.Append(filemenu, "File")
 
             self.SetMenuBar(menu)
 
