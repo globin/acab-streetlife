@@ -114,7 +114,9 @@ class Queue(wx.ScrolledWindow):
         # Start next process
         if not self.IsEmpty():
             animation = self.CurrentAnimation()
-            self.process=subprocess.Popen(["python", animation.GetFile()])
+            cmd = ["python", animation.GetFile()]
+            cmd.extend(animation.GetConfig())
+            self.process=subprocess.Popen(cmd)
 
             print "[" + str(self.process.pid) + "] " + animation.GetFile()
 

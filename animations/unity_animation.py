@@ -3,17 +3,32 @@
 import Image
 import time
 import os
+import sys
 from acabsl import *
+
+FALLBACK = "dance"
+
+# config
+if len(sys.argv) != 2:
+    img_dir = FALLBACK
+else:
+    img_dir = sys.argv[1]
+
+img_file = os.path.join(os.path.dirname(__file__), img_dir, "list")
+
+if not os.path.isfile(img_file):
+    img_dir = FALLBACK
+    img_file = os.path.join(os.path.dirname(__file__), img_dir, "list")
 
 # setup
 img = {}
 frames = []
-with open(os.path.join(os.path.dirname(__file__), "dance/dance")) as f:
+with open(img_file) as f:
     for line in f:
         line = line.strip()
         frames.append(line)
         if line not in img:
-            img[line] = Image.open(os.path.join(os.path.dirname(__file__), "dance", line)).getdata()
+            img[line] = Image.open(os.path.join(os.path.dirname(__file__), img_dir, line)).getdata()
 
 for wall in range(NOOFWALLS):
     for col in range(WALLSIZEX):
