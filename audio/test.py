@@ -11,6 +11,11 @@ FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 44100
 
+THRESHOLD = 120
+MIN_OFFSET = 0.5
+
+NOOF_BPM_VALUES = 5
+
 # FFT
 def calculate_levels(data):
     # Convert raw sound data to Numpy array
@@ -34,13 +39,27 @@ def calculate_levels(data):
     levels = [sum(fourier[i:(i+size/6)]) for i in xrange(0, size, size/6)][:6]
     return levels
 
+def add_offset(offset_list, new_value):
+    if len(offset_list) > 0 and len(offset_list) > NOOF_BPM_VALUES:
+        offset_list.pop(0)
+
+    offset_list.append(new_value)
+
+def calc_bpm(offset_list):
+    avg = sum(offset_list) / float(len(offset_list))
+
+    return 60.0/avg
+
 # Main
 def read():
     p = pyaudio.PyAudio()
 
     stream = p.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True, frames_per_buffer=CHUNK)
 
+    # Interesting values :)
     last_beat = 0
+    offset_list = []
+    bpm = 0
 
     print("Start recording...")
 
@@ -56,9 +75,15 @@ def read():
 
             current_beat = time.time()
 
-            if levels[0] > 120 and current_beat - last_beat > 0.5:
-                print "BUMM"
+            if levels[0] > THRESHOLD and current_beat - last_beat > MIN_OFFSET:
+                if last_beat != 0:
+                    add_offset(offset_list, current_beat - last_beat)
+                    bpm = calc_bpm(offset_list)
+
                 last_beat = current_beat
+
+                print bpm
+
     except KeyboardInterrupt:
         pass
 
