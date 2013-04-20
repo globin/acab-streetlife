@@ -23,9 +23,6 @@ class MainFrame(wx.Frame):
 
             self.Bind(wx.EVT_MENU, self.OnExit, exitItem)
 
-            # Statusbar
-            self.CreateStatusBar()
-
             # Panel with notebook
             panel = wx.Panel(self)
             splitter = wx.SplitterWindow(panel)
