@@ -7,6 +7,7 @@ class Animation:
         self.file = ""
         self.name = ""
         self.config = []
+        self.time = 60
 
     def SetFile(self, tmp):
         self.file = tmp
@@ -26,8 +27,11 @@ class Animation:
     def GetConfig(self):
         return self.config
 
+    def SetTime(self, tmp):
+        self.time = tmp
+
     def GetTime(self):
-        return 10
+        return self.time
 
     @staticmethod
     def LoadFromFile(filename):
