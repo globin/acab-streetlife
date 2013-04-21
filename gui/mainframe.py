@@ -9,6 +9,7 @@ class MainFrame(wx.Frame):
     """ Window for selection of next animations and queue """
     def __init__(self, animations_list):
             wx.Frame.__init__(self, None, title="ACAB Control", size=(700, 400))
+            self.SetMinSize((600,300))
 
             self.animations_list = animations_list
 
@@ -27,6 +28,7 @@ class MainFrame(wx.Frame):
             panel = wx.Panel(self)
             splitter = wx.SplitterWindow(panel)
             splitter.SetSashGravity(0.5)
+            splitter.SetMinimumPaneSize(250)
 
             self.queue = Queue(splitter)
             self.selection = Selection(splitter, self.animations_list, self.queue)
