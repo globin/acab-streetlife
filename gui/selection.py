@@ -25,7 +25,7 @@ class Selection(wx.ScrolledWindow):
 
         for a in self.animations_list:
             tmp = AnimationItem(self, a, self.queue)
-            sizer.Add(tmp, 0, wx.EXPAND)
+            sizer.Add(tmp, 0, wx.EXPAND | wx.BOTTOM, 15)
 
             self.animations_items.append(tmp)
 
