@@ -47,10 +47,19 @@ class Queue(wx.ScrolledWindow):
         if pos == -1:
             pos = len(self.queue)
 
+        # Remove items behind new item from sizer
+        for i in range(pos, len(self.queue)):
+            self.items_sizer.Detach(self.queue[i])
+
+        # Add new item
         tmp = QueueItem(self, animation, self)
         self.items_sizer.Add(tmp, 0, wx.EXPAND)
 
         self.queue.insert(pos, tmp)
+
+        # Add removed items behind new item to sizer
+        for i in range(pos+1, len(self.queue)):
+            self.items_sizer.Add(self.queue[i], 0, wx.EXPAND)
 
         self.Layout()
         self.FitInside()
@@ -60,6 +69,7 @@ class Queue(wx.ScrolledWindow):
 
     def InsertFirst(self, animation):
         self.Insert(animation, 0)
+        self.PlayNext(no_remove = True)
 
     def CurrentAnimation(self):
         if len(self.queue) > 0:
@@ -105,11 +115,12 @@ class Queue(wx.ScrolledWindow):
             self.process.kill()
             self.process = None
 
-    def PlayNext(self):
+    def PlayNext(self, no_remove = False):
         # Kill last process
         if self.process != None:
             self.KillProcess()
-            self.RemoveCurrent()
+            if not no_remove:
+                self.RemoveCurrent()
 
         # Start next process
         if not self.IsEmpty():

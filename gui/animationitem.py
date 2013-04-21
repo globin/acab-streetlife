@@ -22,7 +22,15 @@ class AnimationItem(wx.Panel):
         sizer.Add(queue_button, flag=wx.ALIGN_CENTER_VERTICAL)
         self.Bind(wx.EVT_BUTTON, self.OnButtonQueue, queue_button)
 
+        # Insert First button
+        insert_first_button = wx.Button(self, wx.ID_ANY, "Insert First")
+        sizer.Add(insert_first_button, flag=wx.ALIGN_CENTER_VERTICAL)
+        self.Bind(wx.EVT_BUTTON, self.OnInsertFirst, insert_first_button)
+
         self.SetSizer(sizer)
 
     def OnButtonQueue(self, e):
         self.queue.Insert(self.animation)
+
+    def OnInsertFirst(self, e):
+        self.queue.InsertFirst(self.animation)
