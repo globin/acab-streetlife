@@ -8,7 +8,7 @@ from queue import *
 class MainFrame(wx.Frame):
     """ Window for selection of next animations and queue """
     def __init__(self, animations_list):
-            wx.Frame.__init__(self, None, title="ACAB Control", size=(600, 400))
+            wx.Frame.__init__(self, None, title="ACAB Control", size=(700, 400))
 
             self.animations_list = animations_list
 
