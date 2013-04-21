@@ -11,25 +11,45 @@ unity_scroll.py
 Unity Scroll
 
 unity_animation.py
-chessboard/list
-Chessboard
+chessboard/list,0,255,0
+Chessboard green
 
 unity_animation.py
-dance/list
+chessboard/list,0,0,255
+Chessboard blue
+
+unity_animation.py
+square/full,0,255,0
+Middle square full green
+
+unity_animation.py
+square/full,0,0,255
+Middle square full blue
+
+unity_animation.py
+square/half,0,255,0
+Middle square half green
+
+unity_animation.py
+square/half,0,0,255
+Middle square half blue
+
+unity_animation.py
+circle/full,0,255,0
+Middle circle full green
+
+unity_animation.py
+circle/full,0,0,255
+Middle circle full blue
+
+unity_animation.py
+circle/half,0,255,0
+Middle circle half green
+
+unity_animation.py
+circle/half,0,0,255
+Middle circle half blue
+
+unity_animation.py
+dance/list,255,255,255
 Unity Dance
-
-unity_animation.py
-square/full
-Middle square full
-
-unity_animation.py
-square/half
-Middle square half
-
-unity_animation.py
-circle/full
-Middle circle full
-
-unity_animation.py
-circle/half
-Middle circle half

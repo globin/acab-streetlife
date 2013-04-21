@@ -5,19 +5,22 @@ import time
 import os
 import sys
 from acabsl import *
+from acabx import *
 
-FALLBACK = "dance/list"
+img_file_fallback = "dance/list"
+img_file = img_file_fallback
+filter_data = (255, 255, 255)
 
 # config
-if len(sys.argv) != 2:
-    img_file = FALLBACK
-else:
+if len(sys.argv) == 5:
     img_file = sys.argv[1]
+
+    filter_data = get_filter_data(sys.argv[2:5])
 
 img_file = os.path.join(os.path.dirname(__file__), img_file)
 
 if not os.path.isfile(img_file):
-    img_file = os.path.join(os.path.dirname(__file__), FALLBACK)
+    img_file = os.path.join(os.path.dirname(__file__), img_file_fallback)
 
 img_dir = os.path.dirname(img_file)
 
@@ -44,9 +47,11 @@ def render_frame(data):
             for x in range(WALLSIZEX):
                 ptr = x + y * WALLSIZEX
                 if type(data[ptr]) == int:
-                    send(wall,x,y,data[ptr],data[ptr],data[ptr]);
+                    colors = colorfilter(data[ptr],data[ptr],data[ptr], filter_data)
+                    send(wall,x,y,colors[0],colors[1],colors[2]);
                 else:
-                    send(wall,x,y,data[ptr][0],data[ptr][1],data[ptr][2]);
+                    colors = colorfilter(data[ptr][0],data[ptr][1],data[ptr][2], filter_data)
+                    send(wall,x,y,colors[0],colors[1],colors[2]);
     update()
 
 
