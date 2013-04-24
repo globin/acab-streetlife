@@ -22,11 +22,11 @@ def blank_walls():
 def warp_ring(wall, row, time):
     for i in range(WALLSIZEX):
         if row < WALLSIZEY - 1: 
-            send(wall,i,row+1,r/shade,g/shade,b/shade,time);
+            send(wall,i,row+1,r/shade,g/shade,b/shade,0);
         if row <= WALLSIZEY - 1:
-            send(wall,i,row,r,g,b,time);
+            send(wall,i,row,r,g,b,0);
         if row > 0 and row <= WALLSIZEY:
-            send(wall,i, row-1,r/shade,g/shade,b/shade,time);
+            send(wall,i, row-1,r/shade,g/shade,b/shade,0);
 
     update()
 
