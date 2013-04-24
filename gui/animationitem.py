@@ -3,12 +3,14 @@
 import wx
 from copy import copy
 
+MIN_SECOND=5
+
 class AnimationItem(wx.Panel):
     def __init__(self, parent, animation, queue):
         wx.Panel.__init__(self, parent)
 
         self.animation = animation
-        self.time = 60
+        self.time = 30
 
         self.queue = queue
 
@@ -32,9 +34,9 @@ class AnimationItem(wx.Panel):
         # Time
         time_sizer = wx.BoxSizer(wx.HORIZONTAL)
 
-        self.time_slider = wx.Slider(self, value=60, minValue=0, maxValue=600, size=(300,-1))
-        self.time_minute = wx.SpinCtrl(self, initial=1, min=0, max=10, size=(50, -1))
-        self.time_second = wx.SpinCtrl(self, initial=0, min=0, max=59, size=(50, -1))
+        self.time_slider = wx.Slider(self, value=30, minValue=MIN_SECOND, maxValue=600, size=(300,-1))
+        self.time_minute = wx.SpinCtrl(self, initial=0, min=0, max=10, size=(50, -1))
+        self.time_second = wx.SpinCtrl(self, initial=30, min=0, max=59, size=(50, -1))
 
         self.Bind(wx.EVT_SCROLL, self.OnScroll, self.time_slider)
         self.Bind(wx.EVT_SPINCTRL, self.OnSpin, self.time_minute)
@@ -73,6 +75,10 @@ class AnimationItem(wx.Panel):
     def OnSpin(self, e):
         minute = self.time_minute.GetValue()
         second = self.time_second.GetValue()
+
+        if minute == 0 and second < MIN_SECOND:
+            second = MIN_SECOND
+            self.time_second.SetValue(second)
 
         seconds = self._to_seconds(minute, second)
 
