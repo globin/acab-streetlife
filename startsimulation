@@ -18,6 +18,9 @@ trap kill_sim INT
 # Start server for simulation
 ./server/acabslrouter.py simulation &
 
+# Start beat generator
+#./beatgenerator.py &
+
 # Wait
 echo press enter to stop the simulation
 read dummy

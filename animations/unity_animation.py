@@ -25,6 +25,8 @@ if not os.path.isfile(img_file):
 img_dir = os.path.dirname(img_file)
 
 # setup
+init_beat()
+
 img = {}
 frames = []
 with open(img_file) as f:
@@ -34,11 +36,11 @@ with open(img_file) as f:
         if line not in img:
             img[line] = Image.open(os.path.join(img_dir, line)).getdata()
 
-for wall in range(NOOFWALLS):
-    for col in range(WALLSIZEX):
-        for row in range(WALLSIZEY):
-            send(wall,col,row,0,0,0,0)
-update()
+#for wall in range(NOOFWALLS):
+#    for col in range(WALLSIZEX):
+#        for row in range(WALLSIZEY):
+#            send(wall,col,row,0,0,0,0)
+#update()
 
 
 def render_frame(data):
@@ -57,5 +59,6 @@ def render_frame(data):
 
 while True:
     for f in frames:
+        wait_beat()
         render_frame(img[f])
-        time.sleep(0.42)
+        #time.sleep(0.42)

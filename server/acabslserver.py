@@ -44,7 +44,7 @@ sock.bind((UDP_IP,UDP_PORT))
 thread.start_new_thread(writer,())
 
 while True:
-    data = sock.recv(1024)
+data = sock.recv(1024)
     if not q.full():
         q.put(data)
     else:

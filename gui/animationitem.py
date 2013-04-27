@@ -22,12 +22,12 @@ class AnimationItem(wx.Panel):
         hsizer.Add(name, flag=wx.ALIGN_CENTER_VERTICAL)
 
         # Queue button
-        queue_button = wx.Button(self, wx.ID_ANY, "Queue")
+        queue_button = wx.Button(self, wx.ID_ANY, "Add")
         hsizer.Add(queue_button, flag=wx.ALIGN_CENTER_VERTICAL)
         self.Bind(wx.EVT_BUTTON, self.OnButtonQueue, queue_button)
 
         # Insert First button
-        insert_first_button = wx.Button(self, wx.ID_ANY, "Insert First")
+        insert_first_button = wx.Button(self, wx.ID_ANY, "Add first")
         hsizer.Add(insert_first_button, flag=wx.ALIGN_CENTER_VERTICAL)
         self.Bind(wx.EVT_BUTTON, self.OnInsertFirst, insert_first_button)
 

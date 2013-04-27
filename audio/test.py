@@ -4,6 +4,9 @@ import pyaudio
 import numpy
 import struct
 import time
+from acabx import *
+
+BEAT_PORT=6004
 
 # Setup
 CHUNK = 2048
@@ -82,7 +85,7 @@ def read():
 
                 last_beat = current_beat
 
-                print bpm
+                send_beat()
 
     except KeyboardInterrupt:
         pass
@@ -92,4 +95,5 @@ def read():
     p.terminate()
 
 if __name__ == "__main__":
+    init_beat(BEAT_PORT)
     read()

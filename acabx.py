@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 
+import socket
+
+UDPHOST="localhost"
+UDPPORT=6001
+
+# Color system
 def _filter_data_normalize(value):
     try:
         value = int(value)
@@ -22,3 +28,19 @@ def colorfilter(r, g, b, filter_data):
     b_out = (b/255.0) * filter_data[2]
 
     return (r_out, g_out, b_out)
+
+# Sound system
+sock = None
+
+def init_beat(port = UDPPORT):
+    global sock
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    sock.bind((UDPHOST,port))
+
+def wait_beat():
+    global sock
+    sock.recv(1)
+
+def send_beat(port = UDPPORT):
+    global sock
+    sock.sendto("1", (UDPHOST, port))
