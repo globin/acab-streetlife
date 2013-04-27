@@ -4,6 +4,7 @@ import wx
 
 from selection import *
 from queue import *
+from beat_control import *
 
 class MainFrame(wx.Frame):
     """ Window for selection of next animations and queue """
@@ -26,6 +27,7 @@ class MainFrame(wx.Frame):
 
             # Panel with notebook
             panel = wx.Panel(self)
+
             splitter = wx.SplitterWindow(panel)
             splitter.SetSashGravity(0.5)
             splitter.SetMinimumPaneSize(250)
@@ -35,8 +37,11 @@ class MainFrame(wx.Frame):
 
             splitter.SplitVertically(self.selection, self.queue)
 
+            beat_control = BeatControl(panel)
+
             # Layout
-            sizer = wx.BoxSizer()
+            sizer = wx.BoxSizer(wx.VERTICAL)
+            sizer.Add(beat_control, 0, wx.EXPAND)
             sizer.Add(splitter, 1, wx.EXPAND)
             panel.SetSizer(sizer)
 
