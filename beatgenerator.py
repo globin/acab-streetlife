@@ -3,14 +3,13 @@
 from acabx import *
 from time import *
 
-SERVER_PORT=6002
 SECONDS=0.5
 
-init_beat(SERVER_PORT)
+beat_data = init_beat_server(6002)
 
 while True:
     try:
-        send_beat()
+        send_beat(beat_data)
     except socket.error as e:
         if e.errno != errno.EINTR: # Interrupted system call
             print e

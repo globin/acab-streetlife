@@ -3,7 +3,6 @@
 import socket
 
 UDPHOST="localhost"
-UDPPORT=6001
 
 # Color system
 def _filter_data_normalize(value):
@@ -31,16 +30,37 @@ def colorfilter(r, g, b, filter_data):
 
 # Sound system
 sock = None
+dest = None
 
-def init_beat(port = UDPPORT):
-    global sock
+# Init port
+def init_beat_client(port, timeout = None):
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.bind((UDPHOST,port))
 
-def wait_beat():
-    global sock
-    sock.recv(1)
+    if timeout != None:
+        sock.settimeout(timeout)
 
-def send_beat(port = UDPPORT):
-    global sock
-    sock.sendto("1", (UDPHOST, port))
+    return (sock, None)
+
+# Init port
+def init_beat_server(port, timeout = None):
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    dest = port
+
+    if timeout != None:
+        sock.settimeout(timeout)
+
+    return (sock, dest)
+
+# Wait for beat
+def wait_beat(data):
+    try:
+        data[0].recv(1)
+    except socket.timeout:
+        return False
+
+    return True
+
+# Send beat to port
+def send_beat(data):
+    data[0].sendto("1", (UDPHOST, data[1]))

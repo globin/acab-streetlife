@@ -25,7 +25,7 @@ if not os.path.isfile(img_file):
 img_dir = os.path.dirname(img_file)
 
 # setup
-init_beat()
+beat_data = init_beat_client(6001)
 
 img = {}
 frames = []
@@ -59,6 +59,6 @@ def render_frame(data):
 
 while True:
     for f in frames:
-        wait_beat()
+        wait_beat(beat_data)
         render_frame(img[f])
         #time.sleep(0.42)

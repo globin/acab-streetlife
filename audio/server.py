@@ -6,7 +6,9 @@ import struct
 import time
 from acabx import *
 
-BEAT_PORT=6004
+DEBUG = True
+
+BEAT_PORT=6002
 
 # Setup
 CHUNK = 2048
@@ -55,6 +57,8 @@ def calc_bpm(offset_list):
 
 # Main
 def read():
+    beat_data = init_beat_server(BEAT_PORT)
+
     p = pyaudio.PyAudio()
 
     stream = p.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True, frames_per_buffer=CHUNK)
@@ -64,17 +68,14 @@ def read():
     offset_list = []
     bpm = 0
 
-    print("Start recording...")
+    if DEBUG:
+        print("Start recording...")
 
     try:
         while True:
             data = stream.read(CHUNK)
 
             levels = calculate_levels(data)
-
-            #for level in levels:
-            #    print str(level) + ",",
-            #print
 
             current_beat = time.time()
 
@@ -85,7 +86,10 @@ def read():
 
                 last_beat = current_beat
 
-                send_beat()
+                if DEBUG:
+                    print(bpm)
+
+                send_beat(beat_data)
 
     except KeyboardInterrupt:
         pass
@@ -95,5 +99,4 @@ def read():
     p.terminate()
 
 if __name__ == "__main__":
-    init_beat(BEAT_PORT)
     read()
