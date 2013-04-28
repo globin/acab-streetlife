@@ -2,8 +2,8 @@ fullpulse.py
 #
 Einfarbiger Fade
 
-warp_core.py
-#
+unity_animation.py
+warpcore/list,0,187,255
 Warp core
 
 unity_scroll.py
@@ -51,36 +51,36 @@ circle/half,0,0,255
 Middle circle half blue
 
 unity_animation.py
-vertical_ltr/full,0,255,0
-Vertical left full green
+vertical/ltr_full,0,255,0
+Vertical ltr full green
 
 unity_animation.py
-vertical_ltr/full,0,0,255
-Vertical left full blue
+vertical/ltr_full,0,0,255
+Vertical ltr full blue
 
 unity_animation.py
-vertical_ltr/half,0,255,0
-Vertical left half green
+vertical/ltr_half,0,255,0
+Vertical ltr half green
 
 unity_animation.py
-vertical_ltr/half,0,0,255
-Vertical left half blue
+vertical/ltr_half,0,0,255
+Vertical ltr half blue
 
 unity_animation.py
-vertical_rtl/full,0,255,0
-Vertical right full green
+vertical/rtl_full,0,255,0
+Vertical rtl full green
 
 unity_animation.py
-vertical_rtl/full,0,0,255
-Vertical right full blue
+vertical/rtl_full,0,0,255
+Vertical rtl full blue
 
 unity_animation.py
-vertical_rtl/half,0,255,0
-Vertical right half green
+vertical/rtl_half,0,255,0
+Vertical rtl half green
 
 unity_animation.py
-vertical_rtl/half,0,0,255
-Vertical right half blue
+vertical/rtl_half,0,0,255
+Vertical rtl half blue
 
 unity_animation.py
 dance/list,255,255,255
