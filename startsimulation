@@ -1,9 +1,15 @@
 #!/bin/sh
 
+pgrep_kill()
+{
+    kill $(ps aux | grep $1 | grep -v grep | awk '{print $2}')
+}
+
 kill_sim()
 {
-    kill `pidof -x acabslrouter.py`
-    kill `pidof -x acabsimulator.py`
+    pgrep_kill 'acabslrouter.py'
+    pgrep_kill 'acabsimulator.py'
+    pgrep_kill 'audioserver.py'
 
     exit
 }
@@ -18,8 +24,8 @@ trap kill_sim INT
 # Start server for simulation
 ./server/acabslrouter.py simulation &
 
-# Start beat generator
-#./beatgenerator.py &
+# Start audio server
+./audio/audioserver.py &
 
 # Wait
 echo press enter to stop the simulation
