@@ -6,7 +6,7 @@ import struct
 import time
 from acabx import *
 
-DEBUG = True
+DEBUG = False
 
 BEAT_PORT=6002
 
