@@ -16,12 +16,19 @@ class BeatThread(threading.Thread):
     def run(self):
         client_data = init_beat_client(6002, 2.0)
 
+        counter = 0
         while not self.stopped():
             if wait_beat(client_data):
                 self.beat_lock.acquire()
 
                 if self.control.GetLive():
-                   send_beat(self.beat_data)
+                    if counter >= self.control.GetSkip():
+                        send_beat(self.beat_data)
+                        counter = 0
+
+                    counter = counter + 1
+                else:
+                    counter = 0
 
                 self.beat_lock.release()
 

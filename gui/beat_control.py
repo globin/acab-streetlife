@@ -15,6 +15,7 @@ class BeatControl(wx.Panel):
 
         # Status
         self.live = False
+        self.skip = 0
         self.bpm = START_BPM
         self.beat_data = init_beat_server(6001)
         self.beat_lock = threading.Lock()
@@ -54,9 +55,22 @@ class BeatControl(wx.Panel):
         self.button_live.SetValue(False)
         self.button_manually.SetValue(True)
 
+        # Skip beat
         # Text: BPM
-        t = wx.StaticText(self, wx.ID_ANY, "BPM:", style=wx.ALIGN_CENTRE)
-        sizer_manually.Add(t, 0, wx.EXPAND)
+        t_skip = wx.StaticText(self, wx.ID_ANY, "Skip beat:", style=wx.ALIGN_CENTRE)
+        sizer_live.Add(t_skip, 0, wx.EXPAND)
+
+        # Slider
+        self.spin_skip = wx.SpinCtrl(self, initial=0, min=0, max=3, size=(60, -1))
+
+        self.Bind(wx.EVT_SPINCTRL, self.OnSpinSkip, self.spin_skip)
+
+        sizer_live.Add(self.spin_skip, 0, wx.EXPAND)
+
+
+        # Text: BPM
+        t_bpm = wx.StaticText(self, wx.ID_ANY, "BPM:", style=wx.ALIGN_CENTRE)
+        sizer_manually.Add(t_bpm, 0, wx.EXPAND)
 
         # Slider
         self.slider = wx.Slider(self, value=START_BPM, minValue=MIN_BPM, maxValue=MAX_BPM, size=(300,-1))
@@ -115,6 +129,9 @@ class BeatControl(wx.Panel):
 
         self.beat_lock.release()
 
+    def OnSpinSkip(self, e):
+        self.skip = self.spin_skip.GetValue()
+
     def RestartTimer(self):
         self.beat_lock.acquire()
 
@@ -125,3 +142,6 @@ class BeatControl(wx.Panel):
 
     def GetLive(self):
         return self.live
+    
+    def GetSkip(self):
+        return self.skip

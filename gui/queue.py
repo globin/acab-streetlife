@@ -126,10 +126,10 @@ class Queue(wx.ScrolledWindow):
         if not self.IsEmpty():
             animation = self.CurrentAnimation()
             cmd = ["python", animation.GetFile()]
-            cmd.extend(animation.GetConfig())
+            cmd.extend(animation.GetParsedConfig())
             self.process=subprocess.Popen(cmd)
 
-            print "[" + str(self.process.pid) + "] " + animation.GetFile() + "".join(str(" " + i) for i in animation.GetConfig())
+            print "[" + str(self.process.pid) + "] " + animation.GetFile() + "".join(str(" " + i) for i in animation.GetParsedConfig())
 
             self.timer.Start(animation.GetTime()*1000, True)
 

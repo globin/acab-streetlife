@@ -6,13 +6,15 @@ from copy import copy
 MIN_SECOND=5
 
 class AnimationItem(wx.Panel):
-    def __init__(self, parent, animation, queue):
+    def __init__(self, parent, animation, queue, color):
         wx.Panel.__init__(self, parent)
 
         self.animation = animation
         self.time = 30
 
         self.queue = queue
+
+        self.color = color
 
         # Horizontal Layout: Name, Buttons
         hsizer = wx.BoxSizer(wx.HORIZONTAL)
@@ -56,6 +58,11 @@ class AnimationItem(wx.Panel):
     def OnButtonQueue(self, e):
         tmp = copy(self.animation)
         tmp.SetTime(self.time)
+        tmp.SetColor(self.color.GetColor())
+        print self.color.GetColor()[0]
+        print self.color.GetColor()[1]
+        print self.color.GetColor()[2]
+        print
         self.queue.Insert(tmp)
 
     def OnInsertFirst(self, e):

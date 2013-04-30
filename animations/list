@@ -11,77 +11,41 @@ unity_scroll.py
 Unity Scroll
 
 unity_animation.py
-chessboard/list,0,255,0
-Chessboard green
+chessboard/list,%r,%g,%b
+Chessboard
 
 unity_animation.py
-chessboard/list,0,0,255
-Chessboard blue
+square/full,%r,%g,%b
+Middle square full
 
 unity_animation.py
-square/full,0,255,0
-Middle square full green
+square/half,%r,%g,%b
+Middle square half
 
 unity_animation.py
-square/full,0,0,255
-Middle square full blue
+circle_free/full,%r,%g,%b
+Middle circle free full
 
 unity_animation.py
-square/half,0,255,0
-Middle square half green
+circle_free/half,%r,%g,%b
+Middle circle free half
 
 unity_animation.py
-square/half,0,0,255
-Middle square half blue
+vertical/ltr_full,%r,%g,%b
+Vertical ltr full
 
 unity_animation.py
-circle/full,0,255,0
-Middle circle full green
+vertical/ltr_half,%r,%g,%b
+Vertical ltr half
 
 unity_animation.py
-circle/full,0,0,255
-Middle circle full blue
+vertical/rtl_full,%r,%g,%b
+Vertical rtl full
 
 unity_animation.py
-circle/half,0,255,0
-Middle circle half green
+vertical/rtl_half,%r,%g,%b
+Vertical rtl half
 
 unity_animation.py
-circle/half,0,0,255
-Middle circle half blue
-
-unity_animation.py
-vertical/ltr_full,0,255,0
-Vertical ltr full green
-
-unity_animation.py
-vertical/ltr_full,0,0,255
-Vertical ltr full blue
-
-unity_animation.py
-vertical/ltr_half,0,255,0
-Vertical ltr half green
-
-unity_animation.py
-vertical/ltr_half,0,0,255
-Vertical ltr half blue
-
-unity_animation.py
-vertical/rtl_full,0,255,0
-Vertical rtl full green
-
-unity_animation.py
-vertical/rtl_full,0,0,255
-Vertical rtl full blue
-
-unity_animation.py
-vertical/rtl_half,0,255,0
-Vertical rtl half green
-
-unity_animation.py
-vertical/rtl_half,0,0,255
-Vertical rtl half blue
-
-unity_animation.py
-dance/list,255,255,255
+dance/list,%r,%g,%b
 Unity Dance
