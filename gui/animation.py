@@ -8,7 +8,7 @@ class Animation:
         self.name = ""
         self.config = []
         self.time = 60
-        self.color=(255,255,255)
+        self.color=None
 
     def SetFile(self, tmp):
         self.file = tmp
@@ -43,13 +43,14 @@ class Animation:
     def GetParsedConfig(self):
         tmp = self.config[:]
 
-        for i,c in enumerate(tmp):
-            if c == "%r":
-                tmp[i] = str(self.color[0])
-            elif c == "%g":
-                tmp[i] = str(self.color[1])
-            elif c == "%b":
-                tmp[i] = str(self.color[2])
+        if self.color:
+            for i,c in enumerate(tmp):
+                if c == "%r":
+                    tmp[i] = str(self.color[0])
+                elif c == "%g":
+                    tmp[i] = str(self.color[1])
+                elif c == "%b":
+                    tmp[i] = str(self.color[2])
 
         return tmp
 

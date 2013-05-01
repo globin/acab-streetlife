@@ -36,7 +36,7 @@ class BeatControl(wx.Panel):
         sizer_manually = wx.BoxSizer(wx.HORIZONTAL)
 
         # Title
-        t = wx.StaticText(self, wx.ID_ANY, "Beat control", style=wx.ALIGN_CENTRE)
+        t = wx.StaticText(self, wx.ID_ANY, "Beat control")
         f = t.GetFont()
         f.SetWeight(wx.BOLD)
         t.SetFont(f)
@@ -57,8 +57,8 @@ class BeatControl(wx.Panel):
 
         # Skip beat
         # Text: BPM
-        t_skip = wx.StaticText(self, wx.ID_ANY, "Skip beat:", style=wx.ALIGN_CENTRE)
-        sizer_live.Add(t_skip, 0, wx.EXPAND)
+        t_skip = wx.StaticText(self, wx.ID_ANY, "Skip beat:")
+        sizer_live.Add(t_skip, 0, flag=wx.ALIGN_CENTER_VERTICAL)
 
         # Slider
         self.spin_skip = wx.SpinCtrl(self, initial=0, min=0, max=3, size=(60, -1))
@@ -69,8 +69,8 @@ class BeatControl(wx.Panel):
 
 
         # Text: BPM
-        t_bpm = wx.StaticText(self, wx.ID_ANY, "BPM:", style=wx.ALIGN_CENTRE)
-        sizer_manually.Add(t_bpm, 0, wx.EXPAND)
+        t_bpm = wx.StaticText(self, wx.ID_ANY, "BPM:")
+        sizer_manually.Add(t_bpm, 0, flag=wx.ALIGN_CENTER_VERTICAL)
 
         # Slider
         self.slider = wx.Slider(self, value=START_BPM, minValue=MIN_BPM, maxValue=MAX_BPM, size=(300,-1))

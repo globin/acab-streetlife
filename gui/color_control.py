@@ -10,7 +10,9 @@ class ColorControl(wx.Panel):
 
         # Sizer
         sizer = wx.BoxSizer(wx.VERTICAL)
-        sizer_colors = wx.BoxSizer(wx.VERTICAL)
+        sizer_colors = wx.BoxSizer(wx.HORIZONTAL)
+        sizer_rgb = wx.BoxSizer(wx.VERTICAL)
+        sizer_cmy = wx.BoxSizer(wx.VERTICAL)
 
         # Title
         t = wx.StaticText(self, wx.ID_ANY, "Color control", style=wx.ALIGN_CENTRE)
@@ -24,19 +26,31 @@ class ColorControl(wx.Panel):
         self.button_green = wx.RadioButton(self, label="Green", size=(100,-1))
         self.button_blue = wx.RadioButton(self, label="Blue", size=(100,-1))
 
-        sizer_colors.Add(self.button_red, 0, wx.EXPAND)
-        sizer_colors.Add(self.button_green, 0, wx.EXPAND)
-        sizer_colors.Add(self.button_blue, 0, wx.EXPAND)
+        self.button_cyan = wx.RadioButton(self, label="Cyan", size=(100,-1))
+        self.button_magenta = wx.RadioButton(self, label="Magenta", size=(100,-1))
+        self.button_yellow = wx.RadioButton(self, label="Yellow", size=(100,-1))
+
+        sizer_rgb.Add(self.button_red, 0, wx.EXPAND)
+        sizer_rgb.Add(self.button_green, 0, wx.EXPAND)
+        sizer_rgb.Add(self.button_blue, 0, wx.EXPAND)
+
+        sizer_cmy.Add(self.button_cyan, 0, wx.EXPAND)
+        sizer_cmy.Add(self.button_magenta, 0, wx.EXPAND)
+        sizer_cmy.Add(self.button_yellow, 0, wx.EXPAND)
 
         self.Bind(wx.EVT_RADIOBUTTON, self.OnChoose, self.button_red)
         self.Bind(wx.EVT_RADIOBUTTON, self.OnChoose, self.button_green)
         self.Bind(wx.EVT_RADIOBUTTON, self.OnChoose, self.button_blue)
 
-        self.button_red.SetValue(False)
+        self.Bind(wx.EVT_RADIOBUTTON, self.OnChoose, self.button_cyan)
+        self.Bind(wx.EVT_RADIOBUTTON, self.OnChoose, self.button_magenta)
+        self.Bind(wx.EVT_RADIOBUTTON, self.OnChoose, self.button_yellow)
+
         self.button_green.SetValue(True)
-        self.button_blue.SetValue(False)
 
         # Sizer
+        sizer_colors.Add(sizer_rgb, 0, wx.EXPAND)
+        sizer_colors.Add(sizer_cmy, 0, wx.EXPAND)
         sizer.Add(sizer_colors, 0 , wx.EXPAND)
 
         self.SetSizer(sizer)
@@ -48,6 +62,12 @@ class ColorControl(wx.Panel):
             self.color = (0, 255, 0)
         elif self.button_blue.GetValue():
             self.color = (0, 0, 255)
+        elif self.button_cyan.GetValue():
+            self.color = (0, 255, 255)
+        elif self.button_magenta.GetValue():
+            self.color = (255, 0, 255)
+        elif self.button_yellow.GetValue():
+            self.color = (255, 255, 0)
 
     def GetColor(self):
         return self.color
