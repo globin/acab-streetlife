@@ -6,8 +6,8 @@ unity_animation.py
 warpcore/list,0,187,255
 Warp core
 
-unity_scroll.py
-#
+unity_animation.py
+unity/list,%r,%g,%b
 Unity Scroll
 
 unity_animation.py
@@ -47,5 +47,9 @@ vertical/rtl_half,%r,%g,%b
 Vertical rtl half
 
 unity_animation.py
-dance/list,%r,%g,%b
+dance/list,255,255,255
 Unity Dance
+
+unity_animation.py
+dance_monochrom/list,%r,%g,%b
+Unity Dance Monochrom
