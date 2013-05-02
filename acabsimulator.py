@@ -19,7 +19,7 @@ q = Queue.Queue(100)
 xsize = 60
 ysize = 40
 
-xpixels = 12
+xpixels = 10
 ypixels = 8
 
 acab = [[[0,0,0,0,0,0,0,0,0] for col in range(ypixels)] for row in range(xpixels)]

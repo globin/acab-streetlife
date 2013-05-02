@@ -19,8 +19,8 @@ with lower priority will be activated.
 """
 
 #walls = [[host, port, startx, starty, sizex, sizey, socket],
-walls = [{'host': 'localhost', 'port': 5001, 'simhost': 'localhost', 'simport': 4001, 'startx': 0, 'starty': 0, 'sizex': 12, 'sizey': 8},
-         {'host': 'localhost', 'port': 5002, 'simhost': 'localhost', 'simport': 4002, 'startx': 8, 'starty': 0, 'sizex': 12, 'sizey': 8}]
+walls = [{'host': 'localhost', 'port': 5001, 'simhost': 'localhost', 'simport': 4001, 'startx': 0, 'starty': 0, 'sizex': 10, 'sizey': 8},
+         {'host': 'localhost', 'port': 5002, 'simhost': 'localhost', 'simport': 4002, 'startx': 8, 'starty': 0, 'sizex': 10, 'sizey': 8}]
 
 #inputs = [[port, priority, timeout, socket],
 inputs = [{'port': 5007, 'priority': 0, 'timeout': 1},
