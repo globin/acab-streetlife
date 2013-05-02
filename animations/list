@@ -92,3 +92,8 @@ unity_animation.py
 speaker/list,%r,%g,%b
 Lautsprecher
 #
+
+unity_animation.py
+rays/list,%r,%g,%b
+Strahlen
+#
