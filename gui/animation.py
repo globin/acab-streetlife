@@ -9,6 +9,7 @@ class Animation:
         self.config = []
         self.time = 60
         self.color=None
+        self.preview=None
 
     def SetFile(self, tmp):
         self.file = tmp
@@ -39,6 +40,12 @@ class Animation:
 
     def GetColor(self):
         return self.color
+
+    def SetPreview(self, tmp):
+        self.preview = tmp
+
+    def GetPreview(self):
+        return self.preview
 
     def GetParsedConfig(self):
         tmp = self.config[:]
@@ -87,6 +94,12 @@ class Animation:
                 # Name
                 elif counter == 2:
                     tmp.SetName(line)
+                    counter = counter + 1
+                # Preview
+                elif counter == 3:
+                    if line != "#":
+                        tmp.SetPreview(os.path.join(path, line))
+
                     animations_list.append(tmp)
                     counter = 0
 

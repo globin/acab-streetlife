@@ -1,47 +1,94 @@
 unity_animation.py
 unity/list,%r,%g,%b
 Unity Scroll
+unity/unity_01.png
 
 unity_animation.py
 dance/list,255,255,255
 Unity Dance
+#
 
 unity_animation.py
 dance_monochrom/list,%r,%g,%b
 Unity Dance Monochrom
+#
 
 unity_animation.py
 warpcore/list,%r,%g,%b
 Warp core
+#
 
 unity_animation.py
 circle_free/full,%r,%g,%b
 Halbkreise, komplett
+#
 
 unity_animation.py
 circle_free/half,%r,%g,%b
 Halbkreise, halb
+#
 
 unity_animation.py
 pyramid/full,%r,%g,%b
 Pyramide, komplett
+#
 
 unity_animation.py
 pyramid/half,%r,%g,%b
 Pyramide, halb
+#
 
 unity_animation.py
 vertical/ltr_full,%r,%g,%b
 Balken, vertikal, links nach rechts, komplett
+#
 
 unity_animation.py
 vertical/ltr_half,%r,%g,%b
 Balken, vertikal, links nach rechts, halb
+#
 
 unity_animation.py
 vertical/rtl_full,%r,%g,%b
 Balken, vertikal, rechts nach links, komplett
+#
 
 unity_animation.py
 vertical/rtl_half,%r,%g,%b
 Balken, vertikal, rechts nach links, halb
+#
+
+unity_animation.py
+arrow/ltr,%r,%g,%b
+Pfeil, links nach rechts
+#
+
+unity_animation.py
+arrow/ltr_fast,%r,%g,%b
+Pfeil, links nach rechts, schnell
+#
+
+unity_animation.py
+arrow/ltr_faster,%r,%g,%b
+Pfeil, links nach rechts, schneller
+#
+
+unity_animation.py
+arrow/rtl,%r,%g,%b
+Pfeil, rechts nach links
+#
+
+unity_animation.py
+arrow/rtl_fast,%r,%g,%b
+Pfeil, rechts nach links, schnell
+#
+
+unity_animation.py
+arrow/rtl_faster,%r,%g,%b
+Pfeil, rechts nach links, schneller
+#
+
+unity_animation.py
+speaker/list,%r,%g,%b
+Lautsprecher
+#
