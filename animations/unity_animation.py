@@ -44,10 +44,16 @@ with open(img_file) as f:
 
 
 def render_frame(data):
+    img_x = int(data.size[0])
+    img_y = int(data.size[1])
+
+    size_x = min(WALLSIZEX, img_x)
+    size_y = min(WALLSIZEY, img_y)
+
     for wall in range(NOOFWALLS):
-        for y in range(WALLSIZEY):
-            for x in range(WALLSIZEX):
-                ptr = x + y * WALLSIZEX
+        for y in range(size_y):
+            for x in range(size_x):
+                ptr = x + y * img_x
                 if type(data[ptr]) == int:
                     colors = colorfilter(data[ptr],data[ptr],data[ptr], filter_data)
                     send(wall,x,y,colors[0],colors[1],colors[2]);
