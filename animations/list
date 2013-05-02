@@ -1,50 +1,6 @@
-fullpulse.py
-#
-Einfarbiger Fade
-
-unity_animation.py
-warpcore/list,0,187,255
-Warp core
-
 unity_animation.py
 unity/list,%r,%g,%b
 Unity Scroll
-
-unity_animation.py
-chessboard/list,%r,%g,%b
-Chessboard
-
-unity_animation.py
-square/full,%r,%g,%b
-Middle square full
-
-unity_animation.py
-square/half,%r,%g,%b
-Middle square half
-
-unity_animation.py
-circle_free/full,%r,%g,%b
-Middle circle free full
-
-unity_animation.py
-circle_free/half,%r,%g,%b
-Middle circle free half
-
-unity_animation.py
-vertical/ltr_full,%r,%g,%b
-Vertical ltr full
-
-unity_animation.py
-vertical/ltr_half,%r,%g,%b
-Vertical ltr half
-
-unity_animation.py
-vertical/rtl_full,%r,%g,%b
-Vertical rtl full
-
-unity_animation.py
-vertical/rtl_half,%r,%g,%b
-Vertical rtl half
 
 unity_animation.py
 dance/list,255,255,255
@@ -53,3 +9,39 @@ Unity Dance
 unity_animation.py
 dance_monochrom/list,%r,%g,%b
 Unity Dance Monochrom
+
+unity_animation.py
+warpcore/list,%r,%g,%b
+Warp core
+
+unity_animation.py
+circle_free/full,%r,%g,%b
+Halbkreise, komplett
+
+unity_animation.py
+circle_free/half,%r,%g,%b
+Halbkreise, halb
+
+unity_animation.py
+pyramid/full,%r,%g,%b
+Pyramide, komplett
+
+unity_animation.py
+pyramid/half,%r,%g,%b
+Pyramide, halb
+
+unity_animation.py
+vertical/ltr_full,%r,%g,%b
+Balken, vertikal, links nach rechts, komplett
+
+unity_animation.py
+vertical/ltr_half,%r,%g,%b
+Balken, vertikal, links nach rechts, halb
+
+unity_animation.py
+vertical/rtl_full,%r,%g,%b
+Balken, vertikal, rechts nach links, komplett
+
+unity_animation.py
+vertical/rtl_half,%r,%g,%b
+Balken, vertikal, rechts nach links, halb
