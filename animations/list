@@ -97,3 +97,8 @@ unity_animation.py
 rays/list,%r,%g,%b
 Strahlen
 #
+
+unity_animation.py
+pacman/list,%r,%g,%b
+Pacman
+#
