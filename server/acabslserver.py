@@ -7,7 +7,7 @@ import time
 import Queue
 import sys
 
-UDP_IP="0.0.0.0"
+UDP_IP="127.0.0.1"
 UDP_PORT=int(sys.argv[1])
 q = Queue.Queue(100)
 
@@ -44,7 +44,7 @@ sock.bind((UDP_IP,UDP_PORT))
 thread.start_new_thread(writer,())
 
 while True:
-data = sock.recv(1024)
+    data = sock.recv(1024)
     if not q.full():
         q.put(data)
     else:
