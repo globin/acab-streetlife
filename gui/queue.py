@@ -2,13 +2,16 @@
 
 import wx
 import subprocess
+import random
 
 from queueitem import *
 
 class Queue(wx.ScrolledWindow):
-    def __init__(self, parent):
+    def __init__(self, parent, animations_list):
         wx.ScrolledWindow.__init__(self, parent)
         self.SetScrollRate(10,10)
+
+        self.animations_list = animations_list
 
         # Sizer
         self.sizer = wx.BoxSizer(wx.VERTICAL)
@@ -20,6 +23,11 @@ class Queue(wx.ScrolledWindow):
         f.SetWeight(wx.BOLD)
         t.SetFont(f)
         self.sizer.Add(t, 0, wx.EXPAND)
+
+        # Auto refill
+        self.check_auto_refill = wx.CheckBox(self, wx.ID_ANY, "Auto refill")
+        self.check_auto_refill.SetValue(True)
+        self.sizer.Add(self.check_auto_refill, 0, wx.EXPAND)
 
         # Sizer for items
         self.items_sizer = wx.BoxSizer(wx.VERTICAL)
@@ -35,13 +43,16 @@ class Queue(wx.ScrolledWindow):
         # Process with animation
         self.process = None
 
+        # Init random number generator
+        random.seed()
+
     def __del__(self):
         self.timer.Stop()
 
         if self.process != None:
             self.KillProcess()
 
-    def Insert(self, animation, pos = -1):
+    def Insert(self, animation, pos = -1, do_not_start = False):
         empty = self.IsEmpty()
 
         if pos == -1:
@@ -64,7 +75,7 @@ class Queue(wx.ScrolledWindow):
         self.Layout()
         self.FitInside()
 
-        if empty:
+        if empty and not do_not_start:
             self.PlayNext()
 
     def InsertFirst(self, animation):
@@ -121,6 +132,10 @@ class Queue(wx.ScrolledWindow):
             self.KillProcess()
             if not no_remove:
                 self.RemoveCurrent()
+
+        # Add random animation
+        if self.IsEmpty() and self.check_auto_refill.GetValue():
+            self.Insert(self.animations_list[random.randint(0, len(self.animations_list)-1)], do_not_start = True)
 
         # Start next process
         if not self.IsEmpty():

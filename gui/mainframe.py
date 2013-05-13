@@ -37,7 +37,7 @@ class MainFrame(wx.Frame):
 
             self.color_control = ColorControl(panel)
 
-            self.queue = Queue(splitter)
+            self.queue = Queue(splitter, self.animations_list)
             self.selection = Selection(splitter, self.animations_list, self.queue, self.color_control)
 
             splitter.SplitVertically(self.selection, self.queue)
