@@ -1,10 +1,9 @@
 #!/bin/bash
 
-SERVER_IP=valhalla.fs.tum.de
-SERVER_USER=hertle
+SERVER_IP=unity1
+SERVER_USER=unity
 
 PORTS="5008 6002"
-PORTS="5008"
 
 PID_FILE="/tmp/led-ssh-tunnel"
 
@@ -41,6 +40,6 @@ if [ "$do_start" == "1" ] ; then
     for p in $PORTS ; do
         echo "Start tunnel on port $p"
 
-        start-stop-daemon --pidfile "$PID_FILE_$p" --make-pidfile --exec /usr/bin/ssh --start -- -N $SERVER_USER@$SERVER_IP -L $p:$SERVER_IP:$p&
+        start-stop-daemon --pidfile "$PID_FILE_$p" --make-pidfile --exec /usr/bin/ssh --start -- -N $SERVER_USER@$SERVER_IP -L $p:$SERVER_IP:$p -R $p:$SERVER_IP:$p&
     done
 fi
