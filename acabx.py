@@ -3,8 +3,6 @@
 import socket
 import exceptions
 
-UDPHOST="localhost"
-
 # Color system
 def _filter_data_normalize(value):
     try:
@@ -41,17 +39,16 @@ def init_beat_client(port, timeout = None):
     if timeout != None:
         sock.settimeout(timeout)
 
-    return (sock, None)
+    return (sock, None, None)
 
 # Init port
-def init_beat_server(port, timeout = None):
+def init_beat_server(host, port, timeout = None):
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    dest = port
 
     if timeout != None:
         sock.settimeout(timeout)
 
-    return (sock, dest)
+    return (sock, host, port)
 
 # Wait for beat
 def wait_beat(data):
@@ -64,4 +61,4 @@ def wait_beat(data):
 
 # Send beat to port
 def send_beat(data):
-    data[0].sendto("1", (UDPHOST, data[1]))
+    data[0].sendto("1", (data[1], data[2]))

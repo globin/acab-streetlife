@@ -3,9 +3,11 @@
 from acabx import *
 from time import *
 
+from hosts import *
+
 SECONDS=0.5
 
-beat_data = init_beat_server(6002)
+beat_data = init_beat_server(AUDIO_RECEIVER_HOST, 6002)
 
 while True:
     try:

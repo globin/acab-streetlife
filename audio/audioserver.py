@@ -5,6 +5,7 @@ import numpy
 import struct
 import time
 from acabx import *
+from hosts import *
 
 DEBUG = False
 
@@ -57,7 +58,7 @@ def calc_bpm(offset_list):
 
 # Main
 def read():
-    beat_data = init_beat_server(BEAT_PORT)
+    beat_data = init_beat_server(AUDIO_RECEIVER_HOST, BEAT_PORT)
 
     p = pyaudio.PyAudio()
 
