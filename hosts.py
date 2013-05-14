@@ -1,0 +1,13 @@
+#!/usr/bin/env python
+
+# GUI
+CLIENT_HOST="129.187.202.162"
+
+# acabslrouter.py
+SERVER_HOST="129.187.202.161"
+
+# GUI
+AUDIO_RECEIVER_HOST=CLIENT_HOST
+
+# Animation
+AUDIO_CLIENT_HOST=CLIENT_HOST

@@ -3,10 +3,12 @@
 import urllib2
 import socket
 
+from hosts import *
+
 #HOST="127.1"
 #PORT=8080
 
-UDPHOST="localhost"
+UDPHOST=SERVER_HOST
 UDPPORT=5008
 #SIMULATORPORT=4006
 

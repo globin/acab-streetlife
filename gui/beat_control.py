@@ -5,6 +5,8 @@ import threading
 from acabx import *
 from beat_thread import *
 
+from hosts import *
+
 MIN_BPM=6
 MAX_BPM=240
 START_BPM=120
@@ -17,7 +19,7 @@ class BeatControl(wx.Panel):
         self.live = False
         self.skip = 0
         self.bpm = START_BPM
-        self.beat_data = init_beat_server(6001)
+        self.beat_data = init_beat_server(AUDIO_CLIENT_HOST, 6001)
         self.beat_lock = threading.Lock()
 
         # Timer for next manually beat
