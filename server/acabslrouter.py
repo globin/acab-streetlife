@@ -6,6 +6,8 @@ import Queue
 import sys
 import select
 
+from hosts import *
+
 """
 Accepts traditional single wall streams and
 splits them onto different acabsl.
@@ -32,7 +34,7 @@ nosimulation = sys.argv[1] == 'nosimulation'
 input_sockets = []
 for i in inputs:
     i['socket'] = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    i['socket'].bind(('localhost',i['port']))
+    i['socket'].bind((CLIENT_HOST,i['port']))
     input_sockets.append(i['socket'])
 
 for w in walls:
