@@ -41,6 +41,6 @@ if [ "$do_start" == "1" ] ; then
     for p in $PORTS ; do
         echo "Start tunnel on port $p"
 
-        start-stop-daemon --pidfile "$PID_FILE_$p" --make-pidfile --exec /usr/bin/ssh --start -- -N $SERVER_USER@$SERVER_IP -L $p:meinserver:$p &
+        start-stop-daemon --pidfile "$PID_FILE_$p" --make-pidfile --exec /usr/bin/ssh --start -- -N $SERVER_USER@$SERVER_IP -L $p:$SERVER_IP:$p&
     done
 fi
