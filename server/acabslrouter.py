@@ -34,7 +34,7 @@ nosimulation = sys.argv[1] == 'nosimulation'
 input_sockets = []
 for i in inputs:
     i['socket'] = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    i['socket'].bind((CLIENT_HOST,i['port']))
+    i['socket'].bind(("0.0.0.0",i['port']))
     input_sockets.append(i['socket'])
 
 for w in walls:

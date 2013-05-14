@@ -36,7 +36,7 @@ dest = None
 # Init port
 def init_beat_client(port, timeout = None):
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    sock.bind((UDPHOST,port))
+    sock.bind(("0.0.0.0",port))
 
     if timeout != None:
         sock.settimeout(timeout)
