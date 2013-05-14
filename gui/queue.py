@@ -7,11 +7,12 @@ import random
 from queueitem import *
 
 class Queue(wx.ScrolledWindow):
-    def __init__(self, parent, animations_list):
+    def __init__(self, parent, animations_list, color_control):
         wx.ScrolledWindow.__init__(self, parent)
         self.SetScrollRate(10,10)
 
         self.animations_list = animations_list
+        self.color_control = color_control
 
         # Sizer
         self.sizer = wx.BoxSizer(wx.VERTICAL)
@@ -135,7 +136,9 @@ class Queue(wx.ScrolledWindow):
 
         # Add random animation
         if self.IsEmpty() and self.check_auto_refill.GetValue():
-            self.Insert(self.animations_list[random.randint(0, len(self.animations_list)-1)], do_not_start = True)
+            tmp = self.animations_list[random.randint(0, len(self.animations_list)-1)]
+            tmp.SetColor(self.color_control.GetColor())
+            self.Insert(tmp, do_not_start = True)
 
         # Start next process
         if not self.IsEmpty():

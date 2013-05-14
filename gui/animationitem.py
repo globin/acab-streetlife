@@ -64,6 +64,7 @@ class AnimationItem(wx.Panel):
     def OnInsertFirst(self, e):
         tmp = copy(self.animation)
         tmp.SetTime(self.time)
+        tmp.SetColor(self.color.GetColor())
         self.queue.InsertFirst(tmp)
 
     def OnScroll(self, e):

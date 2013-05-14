@@ -52,7 +52,6 @@ class Animation:
 
         if self.color:
             for i,c in enumerate(tmp):
-                print c
                 if c == "%r":
                     tmp[i] = str(self.color[0])
                 elif c == "%g":
