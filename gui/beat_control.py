@@ -11,6 +11,8 @@ MIN_BPM=6
 MAX_BPM=240
 START_BPM=120
 
+STROBO_BPM=400
+
 class BeatControl(wx.Panel):
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
@@ -84,6 +86,11 @@ class BeatControl(wx.Panel):
         sizer_manually.Add(self.slider, 0, wx.EXPAND)
         sizer_manually.Add(self.spin, 0, wx.EXPAND)
 
+        # Strobo button
+        self.strobo_button = wx.ToggleButton(self, wx.ID_ANY, "STROBO!")
+        sizer_live.Add(self.strobo_button, 0, wx.EXPAND)
+        self.Bind(wx.EVT_TOGGLEBUTTON, self.OnStrobo, self.strobo_button)
+
         # Sizer
         sizer.Add(sizer_live, 0 , wx.EXPAND)
         sizer.Add(sizer_manually, 0 , wx.EXPAND)
@@ -130,6 +137,30 @@ class BeatControl(wx.Panel):
         self.timer.Start((60.0/self.bpm)*1000, True)
 
         self.beat_lock.release()
+
+    def OnStrobo(self, e):
+        if self.strobo_button.GetValue(): # Strobo on
+            self.beat_lock.acquire()
+            self.bpm_old = self.bpm
+            self.bpm = STROBO_BPM
+            self.beat_lock.release()
+
+            self.button_live.Enable(False)
+            self.button_manually.Enable(False)
+            self.spin_skip.Enable(False)
+            self.spin.Enable(False)
+            self.slider.Enable(False)
+
+        else: # Strobo off
+            self.beat_lock.acquire()
+            self.bpm = self.bpm_old
+            self.beat_lock.release()
+
+            self.button_live.Enable(True)
+            self.button_manually.Enable(True)
+            self.spin_skip.Enable(True)
+            self.spin.Enable(True)
+            self.slider.Enable(True)
 
     def OnSpinSkip(self, e):
         self.skip = self.spin_skip.GetValue()
