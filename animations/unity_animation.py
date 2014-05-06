@@ -10,12 +10,14 @@ from acabx import *
 img_file_fallback = "dance/list"
 img_file = img_file_fallback
 filter_data = (255, 255, 255)
+fade_time = 0
 
 # config
-if len(sys.argv) == 5:
+if len(sys.argv) == 6:
     img_file = sys.argv[1]
 
     filter_data = get_filter_data(sys.argv[2:5])
+    fade_time = float(sys.argv[5])
 
 img_file = os.path.join(os.path.dirname(__file__), img_file)
 
@@ -56,10 +58,10 @@ def render_frame(data):
                 ptr = x + y * img_x
                 if type(data[ptr]) == int:
                     colors = colorfilter(data[ptr],data[ptr],data[ptr], filter_data)
-                    send(wall,x,y,colors[0],colors[1],colors[2]);
+                    send(wall,x,y,colors[0],colors[1],colors[2],fade_time);
                 else:
                     colors = colorfilter(data[ptr][0],data[ptr][1],data[ptr][2], filter_data)
-                    send(wall,x,y,colors[0],colors[1],colors[2]);
+                    send(wall,x,y,colors[0],colors[1],colors[2],fade_time);
     update()
 
 

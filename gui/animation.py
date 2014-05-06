@@ -10,6 +10,7 @@ class Animation:
         self.time = 60
         self.color=None
         self.preview=None
+        self.fadetime="0"
 
     def SetFile(self, tmp):
         self.file = tmp
@@ -46,6 +47,12 @@ class Animation:
 
     def GetPreview(self):
         return self.preview
+
+    def SetFadeTime(self, fadetime):
+        self.fadetime = fadetime
+
+    def GetFadeTime(self):
+        return self.fadetime
 
     def GetParsedConfig(self):
         tmp = self.config[:]
@@ -100,7 +107,15 @@ class Animation:
                     if line != "#":
                         tmp.SetPreview(os.path.join(path, line))
 
+                    counter = counter + 1
+                # FadeTime
+                elif counter == 4:
+                    if line != "#":
+                        tmp.SetFadeTime(line) #TODO int or float?
+
                     animations_list.append(tmp)
                     counter = 0
+
+
 
             return animations_list
