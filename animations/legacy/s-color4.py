@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 from acabsl_legacy import send
 from acabsl_legacy import update

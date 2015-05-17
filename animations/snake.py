@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 #
 #	Version: 0.2
 #	Author: digit (markus)
