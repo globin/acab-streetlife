@@ -20,7 +20,7 @@ class AnimationItem(wx.Panel):
         hsizer = wx.BoxSizer(wx.HORIZONTAL)
 
         # Name
-        name = wx.StaticText(self, wx.ID_ANY, self.animation.GetName(), size=(200, -1))
+        name = wx.StaticText(self, wx.ID_ANY, self.animation.name, size=(200, -1))
         hsizer.Add(name, flag=wx.ALIGN_CENTER_VERTICAL)
 
         # Queue button
@@ -57,14 +57,14 @@ class AnimationItem(wx.Panel):
 
     def OnButtonQueue(self, e):
         tmp = copy(self.animation)
-        tmp.SetTime(self.time)
-        tmp.SetColor(self.color.GetColor())
+        tmp.time = self.time
+        tmp.color = self.color.color
         self.queue.Insert(tmp)
 
     def OnInsertFirst(self, e):
         tmp = copy(self.animation)
-        tmp.SetTime(self.time)
-        tmp.SetColor(self.color.GetColor())
+        tmp.time = self.time
+        tmp.color = self.color.color
         self.queue.InsertFirst(tmp)
 
     def OnScroll(self, e):

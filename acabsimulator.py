@@ -19,7 +19,7 @@ q = Queue.Queue(100)
 xsize = 60
 ysize = 40
 
-xpixels = 10
+xpixels = 9
 ypixels = 9
 
 acab = [[[0,0,0,0,0,0,0,0,0] for col in range(ypixels)] for row in range(xpixels)]
@@ -36,17 +36,17 @@ def handle_events():
                 current = acab[x][y][0:3]
                 diff    = acab[x][y][3:6]
                 counts   = acab[x][y][6:9]
-                
+
                 new = [0, 0, 0]
                 for i in range(3):
                     new[i] = max((0,min((current[i] + diff[i],255))))
                     counts[i] = counts[i] - 1
                     if counts[i] == 0:
                         diff[i] = 0
-                
+
                 surf.fill(tuple(map(int, new)))
                 screen.blit(surf, (x*xsize, y*ysize))
-                
+
                 acab[x][y][0:3] = new
                 acab[x][y][3:6] = diff
                 acab[x][y][6:9] = counts
@@ -81,7 +81,7 @@ def writer():
                 current = data[0:3]
                 target = [r,g,b]
                 diff = [target[i] - current[i] for i in range(3)]
-                
+
                 steps = time/33
                 if steps == 0:
                     data[0:3] = target
@@ -98,7 +98,7 @@ def writer():
                 current = data[0:3]
                 target = [r,g,b]
                 diff = [target[i] - current[i] for i in range(3)]
-                
+
                 data[3:6] = [speed, speed, speed]
                 data[6:9] = [d/speed for d in diff]
 

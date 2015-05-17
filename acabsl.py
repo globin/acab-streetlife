@@ -12,7 +12,7 @@ UDPHOST=SERVER_HOST
 UDPPORT=5008
 #SIMULATORPORT=4006
 
-WALLSIZEX=10
+WALLSIZEX=9
 WALLSIZEY=9
 NOOFWALLS=1
 
@@ -38,7 +38,7 @@ def update(buffered = True):
     if buffered:
         msg = "%c%cU%c%c%c%c%c"%(1, 0, 0, 0, 0, 0, 0)
     else:
-        msg = "%c%cU%c%c%c%c%c"%(0, 0, 0, 0, 0, 0, 0) 
+        msg = "%c%cU%c%c%c%c%c"%(0, 0, 0, 0, 0, 0, 0)
 
     sock.sendto(msg, (UDPHOST, UDPPORT))
     #sock.sendto(msg, (UDPHOST, SIMULATORPORT))

@@ -68,6 +68,3 @@ class ColorControl(wx.Panel):
             self.color = (255, 0, 255)
         elif self.button_yellow.GetValue():
             self.color = (255, 255, 0)
-
-    def GetColor(self):
-        return self.color

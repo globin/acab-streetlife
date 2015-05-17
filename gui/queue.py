@@ -137,20 +137,20 @@ class Queue(wx.ScrolledWindow):
         # Add random animation
         if self.IsEmpty() and self.check_auto_refill.GetValue():
             tmp = self.animations_list[random.randint(0, len(self.animations_list)-1)]
-            tmp.SetColor(self.color_control.GetColor())
+            tmp.color = self.color_control.color
             self.Insert(tmp, do_not_start = True)
 
         # Start next process
         if not self.IsEmpty():
             animation = self.CurrentAnimation()
-            cmd = ["python", animation.GetFile()]
-            cmd.extend(animation.GetParsedConfig())
-            cmd.append(animation.GetFadeTime())
+            cmd = ["python", animation.file]
+            cmd.extend(animation.parsedConfig)
+            cmd.append(animation.fadetime)
             self.process=subprocess.Popen(cmd)
 
-            print "[" + str(self.process.pid) + "] " + animation.GetFile() + "".join(str(" " + i) for i in animation.GetParsedConfig())
+            print "[" + str(self.process.pid) + "] " + animation.file + "".join(str(" " + i) for i in animation.parsedConfig)
 
-            self.timer.Start(animation.GetTime()*1000, True)
+            self.timer.Start(animation.time*1000, True)
 
     def OnNextTimer(self, e):
         self.PlayNext()

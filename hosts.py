@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
 # GUI
-CLIENT_HOST="client"
+CLIENT_HOST="localhost"
 
 # acabslrouter.py
-SERVER_HOST="server"
+SERVER_HOST="localhost"
 
 # GUI
 AUDIO_RECEIVER_HOST=CLIENT_HOST

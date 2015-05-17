@@ -12,49 +12,8 @@ class Animation:
         self.preview=None
         self.fadetime="0"
 
-    def SetFile(self, tmp):
-        self.file = tmp
-
-    def GetFile(self):
-        return self.file
-
-    def SetName(self, tmp):
-        self.name = tmp
-
-    def GetName(self):
-        return self.name
-
-    def SetConfig(self, tmp):
-        self.config = tmp
-
-    def GetConfig(self):
-        return self.config
-
-    def SetTime(self, tmp):
-        self.time = tmp
-
-    def GetTime(self):
-        return self.time
-
-    def SetColor(self, tmp):
-        self.color = tmp
-
-    def GetColor(self):
-        return self.color
-
-    def SetPreview(self, tmp):
-        self.preview = tmp
-
-    def GetPreview(self):
-        return self.preview
-
-    def SetFadeTime(self, fadetime):
-        self.fadetime = fadetime
-
-    def GetFadeTime(self):
-        return self.fadetime
-
-    def GetParsedConfig(self):
+    @property
+    def parsedConfig(self):
         tmp = self.config[:]
 
         if self.color:
@@ -89,29 +48,29 @@ class Animation:
                 # File
                 if counter == 0:
                     tmp = Animation()
-                    tmp.SetFile(os.path.join(path, line))
-                    counter = counter + 1
+                    tmp.file = os.path.join(path, line)
+                    counter += 1
                 # Config
                 elif counter == 1:
                     if line != "#":
                         config = line.split(",")
-                        tmp.SetConfig(config)
+                        tmp.config = config
 
-                    counter = counter + 1
+                    counter += 1
                 # Name
                 elif counter == 2:
-                    tmp.SetName(line)
-                    counter = counter + 1
+                    tmp.name = line
+                    counter += 1
                 # Preview
                 elif counter == 3:
                     if line != "#":
-                        tmp.SetPreview(os.path.join(path, line))
+                        tmp.preview = os.path.join(path, line)
 
-                    counter = counter + 1
+                    counter += 1
                 # FadeTime
                 elif counter == 4:
                     if line != "#":
-                        tmp.SetFadeTime(line) #TODO int or float?
+                        tmp.fadetime = line #TODO int or float?
 
                     animations_list.append(tmp)
                     counter = 0

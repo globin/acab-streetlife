@@ -175,6 +175,6 @@ class BeatControl(wx.Panel):
 
     def GetLive(self):
         return self.live
-    
+
     def GetSkip(self):
         return self.skip
