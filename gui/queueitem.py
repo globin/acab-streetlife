@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import random
 import wx
 
 class QueueItem(wx.Panel):
@@ -20,6 +21,7 @@ class QueueItem(wx.Panel):
 
         # Color
         color_values = self.animation.color
+        print self.animation.color
         if color_values:
             color_str = self.ColorToStr(color_values)
         else:

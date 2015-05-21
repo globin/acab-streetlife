@@ -2,7 +2,6 @@
 
 import wx
 import subprocess
-import random
 
 from queueitem import *
 

@@ -75,6 +75,4 @@ class Animation:
                     animations_list.append(tmp)
                     counter = 0
 
-
-
             return animations_list
